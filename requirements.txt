@@ -1,2 +1,1 @@
-pulumi
-pulumi_aws
+requests
