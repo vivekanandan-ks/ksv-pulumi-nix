@@ -23,7 +23,17 @@
           pname = "ksv-pulumi-python-env";
           version = "1.0";
           src = gitignoreSource ./.;
-          requirements = "${src}/requirements.txt";
+          requirement = "${src}/requirements.txt";
+          format = "other";
+          # No setup.py, so skip default build steps
+          dontBuild = true;
+          # Ensure pip is available during install phase
+          nativeBuildInputs = with python.pkgs; [ pip ];
+          # Custom install phase: install dependencies from requirements.txt
+          buildPhase = ''
+            pip install --no-cache-dir -r $src/requirements.txt --prefix=$out
+          '';
+
           };
 
       in {

@@ -1,2 +1,2 @@
 pulumi
-pulumi-aws
+pulumi_aws
