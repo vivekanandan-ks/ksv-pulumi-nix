@@ -30,7 +30,7 @@
           # Ensure pip is available during install phase
           nativeBuildInputs = with python.pkgs; [ pip ];
           # Custom install phase: install dependencies from requirements.txt
-          buildPhase = ''
+          installPhase = ''
             pip install --no-cache-dir -r $src/requirements.txt --prefix=$out
           '';
 
