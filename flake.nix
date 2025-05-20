@@ -18,11 +18,13 @@
           inherit system;
         };
         packageOverrides = pkgs.callPackage (gitignoreSource ./python-packages.nix) {};
+
         python = pkgs.python313.override { inherit packageOverrides; };
         pythonEnv = python.withPackages (p: with p; [
             pulumi
             pulumi-aws
         ]);
+        
         install-requirements = pkgs.writeShellApplication {
           name = "install-requirements";
           runtimeInputs = with pkgs; [];
@@ -42,8 +44,8 @@
             pulumi
           ];
           shellHook = ''
-            
-
+            echo "Running install-requirements..."
+            ${install-requirements}/bin/install-requirements
           '';
         };
       });
