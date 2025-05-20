@@ -22,12 +22,11 @@
 
         python = pkgs.python313.override { inherit packageOverrides; };
         pythonEnv = python.withPackages (p: with p; [
-            import ./requirements.nix
-            #from pypi
-            #pulumi
-            #pulumi-aws
+            #from pypi (add only in requirements.txt)
+            import (gitignoreSource ./requirements.nix)
+            
+            #from nixpkgs (add here below)
 
-            #from nixpkgs
         ]);
         
         install-requirements = pkgs.writeShellApplication {
