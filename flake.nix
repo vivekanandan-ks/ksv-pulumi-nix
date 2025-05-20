@@ -28,7 +28,7 @@
           runtimeInputs = with pkgs; [];
           text = ''
             #!/usr/bin/env ${pkgs.bash}/bin/bash
-            nix run github:nix-community/pip2nix -- ./requirements.txt
+            nix run github:nix-community/pip2nix -- generate -r ./requirements.txt
           '';
         };
 
