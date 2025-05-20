@@ -22,8 +22,12 @@
 
         python = pkgs.python313.override { inherit packageOverrides; };
         pythonEnv = python.withPackages (p: with p; [
-            pulumi
-            pulumi-aws
+            import ./requirements.nix
+            #from pypi
+            #pulumi
+            #pulumi-aws
+
+            #from nixpkgs
         ]);
         
         install-requirements = pkgs.writeShellApplication {
@@ -32,7 +36,7 @@
           text = ''
             #!/usr/bin/env ${pkgs.bash}/bin/bash
             echo "Running install-requirements..."
-            ${pip2nix.defaultPackage.${system}}/bin/pip2nix generate -r ./requirements.txt
+            ${pip2nix.defaultPackage.${system}}/bin/pip2nix generate -r ./requirements.nix
           '';
         };
 
