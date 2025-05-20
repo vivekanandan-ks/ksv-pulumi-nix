@@ -17,33 +17,34 @@
         pkgs = import nixpkgs { 
           inherit system;
         };
-
-        python = pkgs.python313;
-        pythonEnv = python.pkgs.buildPythonApplication rec {
-          pname = "ksv-pulumi-python-env";
-          version = "1.0";
-          src = gitignoreSource ./.;
-          requirement = "${src}/requirements.txt";
-          format = "other";
-          # No setup.py, so skip default build steps
-          dontBuild = true;
-          # Ensure pip is available during install phase
-          nativeBuildInputs = with python.pkgs; [ pip ];
-          # Custom install phase: install dependencies from requirements.txt
-          installPhase = ''
-            pip install --no-cache-dir -r $src/requirements.txt --prefix=$out
+        packageOverrides = pkgs.callPackage (gitignoreSource ./python-packages.nix) {};
+        python = pkgs.python313.override { inherit packageOverrides; };
+        pythonEnv = python.withPackages (p: with p; [
+            pulumi
+            pulumi-aws
+        ]);
+        install-requirements = pkgs.writeShellApplication {
+          name = "install-requirements";
+          runtimeInputs = with pkgs; [];
+          text = ''
+            #!/usr/bin/env ${pkgs.bash}/bin/bash
+            nix run github:nix-community/pip2nix -- ./requirements.txt
           '';
-
-          };
+        };
 
       in {
+
+        packages.install-requirements = install-requirements;
 
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             pythonEnv
             pulumi
-
           ];
+          shellHook = ''
+            
+
+          '';
         };
       });
 }
