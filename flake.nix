@@ -8,9 +8,10 @@
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pip2nix.url = "github:nix-community/pip2nix";
   };
 
-  outputs = { self, nixpkgs, flake-utils, gitignore, ... }:
+  outputs = { self, nixpkgs, flake-utils, gitignore, pip2nix, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         inherit (gitignore.lib) gitignoreSource;
@@ -27,10 +28,11 @@
         
         install-requirements = pkgs.writeShellApplication {
           name = "install-requirements";
-          runtimeInputs = with pkgs; [];
+          runtimeInputs = [pip2nix.defaultPackage.${system}];
           text = ''
             #!/usr/bin/env ${pkgs.bash}/bin/bash
-            nix run github:nix-community/pip2nix -- generate -r ./requirements.txt
+            echo "Running install-requirements..."
+            ${pip2nix.defaultPackage.${system}}/bin/pip2nix generate -r ./requirements.txt
           '';
         };
 
@@ -44,7 +46,6 @@
             pulumi
           ];
           shellHook = ''
-            echo "Running install-requirements..."
             ${install-requirements}/bin/install-requirements
           '';
         };
