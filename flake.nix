@@ -54,7 +54,7 @@
             exec ${pkgs.fish}/bin/fish --init-command '
             function fish_prompt
                 set_color blue
-                echo -n "Pulumi-nix-shell"
+                echo -n "nix-shell"
                 set_color normal
                 echo -n "🐠🐚 "
             end'
