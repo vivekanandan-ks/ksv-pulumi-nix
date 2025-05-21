@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+pulumi_trial.egg-info/PKG-INFO
+pulumi_trial.egg-info/SOURCES.txt
+pulumi_trial.egg-info/dependency_links.txt
+pulumi_trial.egg-info/requires.txt
+pulumi_trial.egg-info/top_level.txt
