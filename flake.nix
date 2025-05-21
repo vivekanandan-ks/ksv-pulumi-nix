@@ -49,6 +49,7 @@
             pulumi
             pulumiPackages.pulumi-python
             awscli2
+            gcc.cc.lib
             
           ];
           shellHook = ''
