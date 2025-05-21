@@ -46,8 +46,8 @@
                 set_color normal
 
                 # Show current directory
-                set_color cyan
-                echo -n (prompt_pwd) ' '
+                set_color blue
+                echo -n (prompt_pwd)
                 set_color normal
 
                 # Get git branch name, if applicable
@@ -62,7 +62,7 @@
                 set_color blue
                 echo -n "nix-shell🐠🐚> "
                 set_color normal
-          end
+            end
             '
 
             '';
