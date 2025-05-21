@@ -53,10 +53,29 @@
             echo "welcome to the pulumi shell created by https://github.com/vivekanandan-ks" | ${pkgs.cowsay}/bin/cowsay
             exec ${pkgs.fish}/bin/fish --init-command '
             function fish_prompt
-                set_color blue
-                echo -n "nix-shell🐠🐚 "
+                # Get exit status of last command
+                set -l last_status $status
+                if test $last_status -eq 0
+                    set_color green
+                    echo -n "✓ "
+                else
+                    set_color red
+                    echo -n "$last_status "
+                end
                 set_color normal
-                echo -n "🐠🐚 "
+
+                # Get git branch name, if applicable
+                set -l git_branch (git symbolic-ref --short HEAD 2>/dev/null)
+                if test -n "$git_branch"
+                    set_color yellow
+                    echo -n "[$git_branch] "
+                    set_color normal
+                end
+
+                # Prompt prefix
+                set_color blue
+                echo -n "nix-shell🐠🐚> "
+                set_color normal
             end'
             
           '';
