@@ -47,6 +47,7 @@
           packages = with pkgs; [
             pythonEnv
             pulumi
+            pulumi-bin
             pulumiPackages.pulumi-python
             awscli2
             gcc.cc.lib
