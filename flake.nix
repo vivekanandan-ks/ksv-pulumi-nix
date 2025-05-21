@@ -63,7 +63,8 @@
                 echo -n "nix-shell🐠🐚> "
                 set_color normal
             end'
-          '';
+
+            '';
         };
       });
 }
