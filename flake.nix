@@ -82,7 +82,7 @@
                 echo -n "nix-shell🐠🐚> "
                 set_color normal
             end'
-            
+            export LD_LIBRARY_PATH=${pkgs.gcc.cc.lib}/lib:$LD_LIBRARY_PATH
           '';
         };
       });
