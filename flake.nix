@@ -50,10 +50,13 @@
           ];
           shellHook = ''
             ${install-requirements}/bin/install-requirements
-            echo "welcome to the pulumi shell created by https://github.com/vivekanandan-ks/ksv-pulumi-nix" | ${pkgs.cowsay}/bin/cowsay
+            echo "welcome to the pulumi shell created by https://github.com/vivekanandan-ks" | ${pkgs.cowsay}/bin/cowsay
             exec ${pkgs.fish}/bin/fish --init-command '
             function fish_prompt
-              echo -n "Pulumi-nix-shell🐠🐚 "
+                set_color blue
+                echo -n "Pulumi-nix-shell"
+                set_color normal
+                echo -n "🐠🐚 "
             end'
             
           '';
