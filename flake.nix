@@ -52,7 +52,10 @@
             echo "welcome to the pulumi shell created by https://github.com/vivekanandan-ks/ksv-pulumi-nix"
             ${install-requirements}/bin/install-requirements
             #exec ${pkgs.fish}/bin/fish
-            exec ${pkgs.fish}/bin/fish -c 'function fish_prompt; echo -n "🐚 "; end;'
+            exec ${pkgs.fish}/bin/fish --init-command '
+            function fish_prompt
+              echo -n "🐚 "
+            end'
           '';
         };
       });
