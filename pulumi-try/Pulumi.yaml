@@ -1,4 +1,4 @@
-name: pulumi-project
+name: pulumi-try
 description: A minimal AWS Python Pulumi program
 runtime:
   name: python
@@ -8,4 +8,4 @@ runtime:
 config:
   pulumi:tags:
     value:
-      pulumi:template: aws-python
+      pulumi:template: https://www.pulumi.com/ai/api/project/cdeb4217-eed2-4a07-9d0b-093d45537c60.zip

@@ -26,7 +26,7 @@
             import (gitignoreSource ./requirements.nix)
             
             #from nixpkgs (add here below)
-
+            pip
         ]);
         
         install-requirements = pkgs.writeShellApplication {
@@ -50,7 +50,9 @@
             pulumi-bin
             pulumiPackages.pulumi-python
             awscli2
-            gcc.cc.lib
+            uv
+
+            #gcc.cc.lib
             
           ];
           shellHook = ''
@@ -83,7 +85,7 @@
                 echo -n "nix-shell🐠🐚> "
                 set_color normal
             end'
-            export LD_LIBRARY_PATH=${pkgs.gcc.cc.lib}/lib:$LD_LIBRARY_PATH
+            #export LD_LIBRARY_PATH=${pkgs.gcc.cc.lib}/lib:$LD_LIBRARY_PATH
           '';
         };
       });
