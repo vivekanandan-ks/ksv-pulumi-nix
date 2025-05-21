@@ -45,6 +45,11 @@
                 end
                 set_color normal
 
+                # Show current directory
+                set_color cyan
+                echo -n (prompt_pwd) ' '
+                set_color normal
+
                 # Get git branch name, if applicable
                 set -l git_branch (git symbolic-ref --short HEAD 2>/dev/null)
                 if test -n "$git_branch"
@@ -58,7 +63,6 @@
                 echo -n "nix-shell🐠🐚> "
                 set_color normal
             end'
-            #export LD_LIBRARY_PATH=${pkgs.gcc.cc.lib}/lib:$LD_LIBRARY_PATH
           '';
         };
       });
