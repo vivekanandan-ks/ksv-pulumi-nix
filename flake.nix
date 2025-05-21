@@ -29,9 +29,14 @@
             uv
             
           ];
+          
+          env.LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+            pkgs.stdenv.cc.cc.lib
+            pkgs.libz
+          ];
+
           shellHook = ''
             echo "welcome to the pulumi shell created by https://github.com/vivekanandan-ks" | ${pkgs.cowsay}/bin/cowsay
-            export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib/
             #my custom fish shel prompt customized (comment below to use defualt bash)
             exec ${pkgs.fish}/bin/fish --init-command '
             function fish_prompt
