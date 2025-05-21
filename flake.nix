@@ -47,6 +47,7 @@
           packages = with pkgs; [
             pythonEnv
             pulumi
+            pulumiPackages.pulumi-python
           ];
           shellHook = ''
             ${install-requirements}/bin/install-requirements
