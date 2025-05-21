@@ -1,1 +1,2 @@
-requests
+pulumi>=3.0.0,<4.0.0
+pulumi-aws>=6.0.2,<7.0.0

@@ -48,6 +48,8 @@
             pythonEnv
             pulumi
             pulumiPackages.pulumi-python
+            awscli2
+            
           ];
           shellHook = ''
             ${install-requirements}/bin/install-requirements
