@@ -22,7 +22,7 @@
 
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            pulumi
+            #pulumi
             pulumi-bin
             pulumiPackages.pulumi-python
             #awscli2
